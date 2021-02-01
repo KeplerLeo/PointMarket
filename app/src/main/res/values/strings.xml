@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">PointMarket</string>
+    <string-array name="list_itens">
+        <item>Cadastrar Produto</item>
+        <item>Contate-nos</item>
+        <item>Sobre</item>
+    </string-array>
+    <string name="regName">Nome:</string>
+    <string name="regDesc">Descrição:</string>
+    <string name="regValue">Valor:</string>
+    <string name="regVisibility">Visibilidade</string>
+    <string name="btnRegister">Cadastrar</string>
+    <string name="course">Programação para Web III</string>
+    <string name="author">Leonardo Kepler Mesquita</string>
 </resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="marginLarge">128dp</dimen>
+    <dimen name="marginNormal">60dp</dimen>
+    <dimen name="marginSmall">25dp</dimen>
+    <dimen name="logoSize">150dp</dimen>
+</resources>
