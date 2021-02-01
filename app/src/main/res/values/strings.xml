@@ -5,9 +5,9 @@
         <item>Contate-nos</item>
         <item>Sobre</item>
     </string-array>
-    <string name="regName">Nome:</string>
-    <string name="regDesc">Descrição:</string>
-    <string name="regValue">Valor:</string>
+    <string name="regName">Nome</string>
+    <string name="regDesc">Descrição</string>
+    <string name="regValue">Valor</string>
     <string name="regVisibility">Visibilidade</string>
     <string name="btnRegister">Cadastrar</string>
     <string name="course">Programação para Web III</string>

@@ -15,7 +15,8 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@mipmap/ic_launcher_round" />
+      app:srcCompat="@mipmap/ic_launcher_round"
+      android:contentDescription="@string/app_name" />
 
   <TextView
       android:id="@+id/textViewName"
@@ -36,10 +37,11 @@
       android:layout_marginTop="@dimen/marginNormal"
       android:ems="10"
       android:inputType="textPersonName"
-      android:text="Name"
+      android:text="@string/regName"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/imageView" />
+      app:layout_constraintTop_toBottomOf="@+id/imageView"
+      android:importantForAutofill="no" />
 
   <TextView
       android:id="@+id/textViewDescription"
@@ -60,10 +62,11 @@
       android:layout_marginTop="@dimen/marginSmall"
       android:ems="10"
       android:inputType="textPersonName"
-      android:text="Description"
+      android:text="@string/regDesc"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/editTextTextName" />
+      app:layout_constraintTop_toBottomOf="@+id/editTextTextName"
+      android:importantForAutofill="no" />
 
   <TextView
       android:id="@+id/textViewValue"
@@ -86,9 +89,10 @@
       android:inputType="number"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
+      app:layout_constraintTop_toBottomOf="@+id/editTextDescription"
+      android:autofillHints="" />
 
-  <Switch
+  <com.google.android.material.switchmaterial.SwitchMaterial
       android:id="@+id/switch1"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
