@@ -4,4 +4,7 @@
     <dimen name="marginNormal">60dp</dimen>
     <dimen name="marginSmall">25dp</dimen>
     <dimen name="logoSize">150dp</dimen>
+    <dimen name="eight">8dp</dimen>
+    <dimen name="zero">0dp</dimen>
+    <dimen name="content">670dp</dimen>
 </resources>

@@ -1,8 +1,10 @@
-package com.example.pointmarket;
+package com.example.pointmarket.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.pointmarket.R;
 
 public class About_Activity extends AppCompatActivity {
 

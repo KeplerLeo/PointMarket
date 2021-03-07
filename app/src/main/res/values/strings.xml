@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">PointMarket</string>
-    <string-array name="list_itens">
-        <item>Cadastrar Produto</item>
-        <item>Contate-nos</item>
-        <item>Sobre</item>
-    </string-array>
+    <string name="regProd">Cadastrar Produto</string>
+    <string name="list">Listar</string>
+    <string name="edit">Editar</string>
+    <string name="delete">Excluir</string>
+    <string name="contact">Contate-nos</string>
+    <string name="about">Sobre</string>
     <string name="regName">Nome</string>
     <string name="regDesc">Descrição</string>
     <string name="regValue">Valor</string>
@@ -12,4 +13,16 @@
     <string name="btnRegister">Cadastrar</string>
     <string name="course">Programação para Web III</string>
     <string name="author">Leonardo Kepler Mesquita</string>
+    <string name="start">Início</string>
+    <string name="navigation_drawer_open">Abrir menu</string>
+    <string name="navigation_drawer_close">Fechar menu</string>
+    <string name="title_activity_login">Login</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Senha</string>
+    <string name="action_sign_in">Login ou Cadastro</string>
+    <string name="action_sign_in_short">Login</string>
+    <string name="welcome">"Bem vindo !"</string>
+    <string name="invalid_username">Usuário invalido</string>
+    <string name="invalid_password">A senha deve ter mais de 5 caracteres</string>
+    <string name="login_failed">"Erro no login"</string>
 </resources>
