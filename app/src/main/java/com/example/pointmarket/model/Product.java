@@ -6,16 +6,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Product {
+    private String id;
     private String name;
     private String desc;
-    private String value;
+    private Double value;
 
     public Product() {
     }
-    public Product(String name, String desc, String value) {
+    public Product(String name, String desc, Double value) {
         this.name = name;
         this.desc = desc;
         this.value = value;
+    }
+
+    public Product(String id, String name, String desc, Double value) {
+        this.id = id;
+        this.name = name;
+        this.desc = desc;
+        this.value = value;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -34,11 +50,11 @@ public class Product {
         this.desc = desc;
     }
 
-    public String getValue() {
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 
@@ -52,11 +68,11 @@ public class Product {
     }
     public static List<Product> startList(){
         List<Product> products = new ArrayList<>();
-        products.add(new Product("Produto 1", "Descrição", "10,00"));
-        products.add(new Product("Produto 2", "Descrição", "20,00"));
-        products.add(new Product("Produto 3", "Descrição", "30,00"));
-        products.add(new Product("Produto 4", "Descrição", "40,00"));
-        products.add(new Product("Produto 5", "Descrição", "50,00"));
+        products.add(new Product("Produto 1", "Descrição", 10.00));
+        products.add(new Product("Produto 2", "Descrição", 20.00));
+        products.add(new Product("Produto 3", "Descrição", 30.00));
+        products.add(new Product("Produto 4", "Descrição", 40.00));
+        products.add(new Product("Produto 5", "Descrição", 50.00));
         return products;
     }
 

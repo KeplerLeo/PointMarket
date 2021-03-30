@@ -9,9 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PointMarket">
+        <activity
+            android:name=".activities.RegUserActivity"
+            android:label="@string/title_activity_reg_user"
+            android:theme="@style/Theme.PointMarket.NoActionBar"></activity>
         <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -19,8 +24,7 @@
         <activity
             android:name=".activities.MenuActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.PointMarket.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.PointMarket.NoActionBar"></activity>
         <activity android:name=".activities.About_Activity" />
         <activity android:name=".activities.RegProductActivity" />
     </application>

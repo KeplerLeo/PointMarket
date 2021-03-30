@@ -1,11 +1,14 @@
 package com.example.pointmarket.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -16,6 +19,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.pointmarket.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -51,8 +55,27 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()== R.id.action_settings){
-            Intent intent = new Intent(this, About_Activity.class);
-            startActivity(intent);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Titulo");
+            builder.setMessage("Digite aqui sua mensagem!");
+            //define um botão como positivo
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface arg0, int arg1) {
+                    Toast.makeText(MenuActivity.this, "Você clicou no botão Ok", Toast.LENGTH_SHORT).show();
+                }
+            });
+            //define um botão como negativo.
+            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface arg0, int arg1) {
+                    Toast.makeText(MenuActivity.this, "Você clicou no botão Cancelar", Toast.LENGTH_SHORT).show();
+                }
+            });
+            AlertDialog alerta = builder.create();
+            alerta.show();//mostra a janela
+        }
+        if(item.getItemId()== R.id.action_logout){
+            FirebaseAuth.getInstance().signOut();
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

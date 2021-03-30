@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "916880545308",
+    "project_id": "pointmarket-5d24d",
+    "storage_bucket": "pointmarket-5d24d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916880545308:android:b7242d3d7522e3418831d9",
+        "android_client_info": {
+          "package_name": "com.example.pointmarket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916880545308-mhr81vqlapmakfv105di3gq3v8pkbcg6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHybsvSzhkfLLshV6szsTxpiNGGrTR_7o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916880545308-mhr81vqlapmakfv105di3gq3v8pkbcg6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

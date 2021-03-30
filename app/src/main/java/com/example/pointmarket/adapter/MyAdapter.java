@@ -1,26 +1,33 @@
 package com.example.pointmarket.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pointmarket.R;
 import com.example.pointmarket.activities.EditProductActivity;
 import com.example.pointmarket.model.Product;
+import com.example.pointmarket.util.FirebaseConf;
+import com.google.firebase.database.DatabaseReference;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     List<Product> listProducts;
-    private Context context;
-    public MyAdapter(List<Product> products, Context context) {
+    Context context;
+    public MyAdapter(Context context, List<Product> products) {
         this.listProducts = products;
         this.context = context;
     }
@@ -38,40 +45,49 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder myViewHolder, int i) {
+    public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder myViewHolder, @SuppressLint("RecyclerView") final int position) {
         //exibe os itens no Recycler
-        Product p = listProducts.get(i);
-        myViewHolder.name.setText(p.getName());
-        myViewHolder.desc.setText(p.getDesc());
-        myViewHolder.value.setText(p.getDesc());
+        final Product product = listProducts.get(position);
+        myViewHolder.name.setText(product.getName());
+        myViewHolder.desc.setText(product.getDesc());
+        myViewHolder.value.setText(String.valueOf(product.getValue()));
         myViewHolder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                removerItem(i);
+                removerItem(position);
             }
         });
         myViewHolder.btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EditProductActivity.class);
-                intent.putExtra("NAME", listProducts.get(i).getName());
-                intent.putExtra("DESC", listProducts.get(i).getDesc());
-                intent.putExtra("VALUE", listProducts.get(i).getValue());
+                intent.putExtra("key", product.getId());
+                intent.putExtra("name", product.getName());
+                intent.putExtra("desc", product.getDesc());
+                intent.putExtra("value", String.valueOf(product.getValue()));
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                context.getApplicationContext().startActivity(intent);
             }
         });
-        }
-    private void removerItem(int position){
-        listProducts.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, listProducts.size());
     }
+    public void removerItem(final int position) {
+        new AlertDialog.Builder(context)
+                .setTitle("Deletando produto")
+                .setMessage("Tem certeza que deseja deletar esse produto?")
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        final DatabaseReference reference = FirebaseConf.getNo("produtos");
+                        reference.child(listProducts.get(position).getId()).removeValue();
+                        listProducts.remove(position);
+                        notifyItemRemoved(position);
 
+                    }}).setNegativeButton("Não", null).show();
+    }
     @Override
     public int getItemCount() {
         //retorna a quantidade de itens que será exibida
-        return listProducts.size();
+        return listProducts != null ? listProducts.size() : 0;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
@@ -79,8 +95,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         TextView name;
         TextView desc;
         TextView value;
-        ImageButton btnEdit;
         ImageButton btnDelete;
+        ImageButton btnEdit;
 
         public MyViewHolder(View itemView){
             super(itemView);
@@ -88,8 +104,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             name = itemView.findViewById(R.id.textViewName);
             desc = itemView.findViewById(R.id.textViewDescription);
             value = itemView.findViewById(R.id.textViewValue);
-            btnEdit = itemView.findViewById(R.id.btnEdit);
-            btnDelete = itemView.findViewById(R.id.btnDelete);
+            btnDelete =  itemView.findViewById(R.id.btnDelete);
+            btnEdit =  itemView.findViewById(R.id.btnEdit);
         }
     }
 }
