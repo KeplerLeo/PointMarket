@@ -1,10 +1,18 @@
 package com.example.pointmarket.activities;
 
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,8 +26,17 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.pointmarket.R;
+import com.example.pointmarket.dao.MessageRep;
+import com.example.pointmarket.model.Message;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -29,9 +46,10 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -55,23 +73,31 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()== R.id.action_settings){
+            Realm.init(this);
+            RealmConfiguration realmConfiguration = new RealmConfiguration.Builder()
+                    .name("messages.realm")
+                    .schemaVersion(1)
+                    .deleteRealmIfMigrationNeeded()
+                    .build();
+            Realm.setDefaultConfiguration(realmConfiguration);
+            MessageRep rep = new MessageRep();
+            Message mes = new Message("Leonardo Kepler Mesquita", "Programação para Web III", "https://ifrs.edu.br/wp-content/themes/ifrs-portal-theme/img/header-default.png");
+            String result = rep.insert(mes);
+            Message recMes = rep.getById(1);
+            InputStream is = null;
+            try {
+                is = (InputStream) new URL(recMes.getImage()).getContent();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Drawable d = Drawable.createFromStream(is, "ifrs");
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Titulo");
-            builder.setMessage("Digite aqui sua mensagem!");
-            //define um botão como positivo
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface arg0, int arg1) {
-                    Toast.makeText(MenuActivity.this, "Você clicou no botão Ok", Toast.LENGTH_SHORT).show();
-                }
-            });
-            //define um botão como negativo.
-            builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface arg0, int arg1) {
-                    Toast.makeText(MenuActivity.this, "Você clicou no botão Cancelar", Toast.LENGTH_SHORT).show();
-                }
-            });
+            builder.setTitle(recMes.getName());
+            builder.setMessage(recMes.getCourse());
+            builder.setIcon(d);
             AlertDialog alerta = builder.create();
             alerta.show();//mostra a janela
+            //rep.delete(mes);
         }
         if(item.getItemId()== R.id.action_logout){
             FirebaseAuth.getInstance().signOut();
