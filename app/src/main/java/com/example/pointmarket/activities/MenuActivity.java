@@ -92,12 +92,11 @@ public class MenuActivity extends AppCompatActivity {
             }
             Drawable d = Drawable.createFromStream(is, "ifrs");
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(recMes.getName());
-            builder.setMessage(recMes.getCourse());
+            builder.setTitle(recMes.getCourse());
+            builder.setMessage(recMes.getName() );
             builder.setIcon(d);
             AlertDialog alerta = builder.create();
             alerta.show();//mostra a janela
-            //rep.delete(mes);
         }
         if(item.getItemId()== R.id.action_logout){
             FirebaseAuth.getInstance().signOut();
